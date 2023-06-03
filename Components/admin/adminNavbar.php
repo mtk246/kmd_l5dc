@@ -24,7 +24,7 @@ $navbarArr = array(
     array(
         "name" => "User Management",
         "icon" => "fa fa-home fa-2x",
-        "path" =>  $url . '/pages/admin/user.php'
+        "path" =>  $url . '/pages/admin/user_management/user.php'
     ),
     array(
         "name" => "Dashboard",
@@ -169,13 +169,9 @@ $curPageName = ucfirst(str_replace('.php', '', $curPageName));
                     ></path>
                 </svg>
             </button>
-            <div class="flex justify-center flex-1 lg:mr-32">
-                <div
-                    class="relative w-full max-w-xl mr-6 text-dark"
-                >
-                    <?php echo $curPageName; ?>
-                </div>
-            </div>
+            <h3 class="text-dark">
+                <?php echo $curPageName; ?>
+            </h3>
             <ul class="flex items-center flex-shrink-0 space-x-6">
                 <!-- Theme toggler -->
                 <li class="flex">

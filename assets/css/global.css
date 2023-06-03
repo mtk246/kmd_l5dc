@@ -33,3 +33,7 @@
 .bg-dark {
     background-color: var(--bg-dark);
 }
+
+.text-dark {
+    color: var(--text-dark);
+}

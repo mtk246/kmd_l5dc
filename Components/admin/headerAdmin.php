@@ -8,6 +8,7 @@
     <link href="../../assets/css/adminNavbar.css" rel="stylesheet" />
     <link href="../../assets/css/global.css" rel="stylesheet" />
     <link href="../../assets/css/styles.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
