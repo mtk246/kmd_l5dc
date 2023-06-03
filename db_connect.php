@@ -1,7 +1,7 @@
 <?php
-  $server_name = "db";
+  $server_name = "127.0.0.1";
   $username = "root";
-  $password = "my_secret_password";
+  $password = "";
   $database = "mtk_camping";
 
   // Create connection

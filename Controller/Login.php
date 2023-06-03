@@ -1,25 +1,25 @@
 <?php
-require_once("db_connect.php");
+require_once("Query.php");
 require_once("../ErrorHandler/error.php");
 
 class Login{
-    private $username;
-    private $password;
+    private string $username;
+    private string $password;
     private $user;
+    private $query;
 
     function __construct() {
-        global $conn;
+        $this->query = new Query();
     }
 
-    function AuthLogin(string $username, string $password) {
-        global $conn;
-        $sql = "SELECT * FROM users";
-        $result = mysqli_query($conn, $sql);
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    function AuthLogin($username, $password) {
+        $this->username = $username;
+        $this->password = $password;
 
-        $this->user = $users;
+        $sql = "SELECT * FROM users WHERE username = '$this->username' AND password = '$this->password'";
 
-        mysqli_close($conn);
+        $this->user = $this->query->executeQuery($sql);
+
         return json_encode($this->user);
     }
 }

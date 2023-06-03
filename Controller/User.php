@@ -1,22 +1,28 @@
 <?php
-require_once("db_connect.php");
+require_once("Query.php");
 
 class User{
-    private $user;
+    private array $user;
+    private string $id;
+    private $query;
 
     function __construct() {
-        global $conn;
-
-        $sql = "SELECT * FROM users";
-        $result = mysqli_query($conn, $sql);
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        $this->user = $users;
-
-        mysqli_close($conn);
+        $this->query = new Query();
     }
 
     function getUserData() {
+        $sql = "SELECT * FROM users";
+        $this->user = $this->query->executeQuery($sql);
+
+        return json_encode($this->user);
+    }
+
+    function getCurrentUserData($id) {
+        $this->id = $id;
+
+        $sql = "SELECT * FROM users WHERE id = '$this->id'";
+        $this->user = $this->query->executeQuery($sql);
+
         return json_encode($this->user);
     }
 }
