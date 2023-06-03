@@ -895,6 +895,9 @@ img,video{
 .inline-block{
     display:inline-block
 }
+.d-none {
+    display: none;
+}
 .flex{
     display:flex
 }

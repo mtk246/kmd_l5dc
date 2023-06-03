@@ -1,3 +1,8 @@
+const toggleForm = () => {
+    const container = document.querySelector('.container');
+    container.classList.toggle('active');
+};
+
 function data() {
     function getThemeFromLocalStorage() {
       // if user already changed the theme, use it
