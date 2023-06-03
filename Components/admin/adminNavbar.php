@@ -24,7 +24,7 @@ $navbarArr = array(
     array(
         "name" => "User Management",
         "icon" => "fa fa-home fa-2x",
-        "path" =>  $url . '/pages/admin/user_management/user.php'
+        "path" =>  $url . '/pages/admin/user.php'
     ),
     array(
         "name" => "Dashboard",
@@ -34,7 +34,9 @@ $navbarArr = array(
 );
 
 $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
-$curPageName = ucfirst(str_replace('.php', '', $curPageName));
+$curPageName = str_replace('.php', '', $curPageName);
+$curPageName = str_replace('_', ' ', $curPageName);
+$curPageName = ucwords($curPageName);
 ?>
 
 <div
