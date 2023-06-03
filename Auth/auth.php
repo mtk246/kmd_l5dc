@@ -1,7 +1,7 @@
 <?php
 require_once("../Controller/Login.php");
 require_once("../ErrorHandler/error.php");
-require_once("../constants.php");
+require_once("../Controller/constants.php");
 session_start();
 
 if ($_POST['submit']) {

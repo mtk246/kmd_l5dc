@@ -1,5 +1,5 @@
 <?php
-require_once("../../constants.php");
+require_once(__DIR__ . "/constants.php");
 require_once(CONST_BASE_PATH . "/db_connect.php");
 
 class Query {
