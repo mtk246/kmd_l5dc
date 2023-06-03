@@ -8,6 +8,11 @@
     <link href="../../assets/css/styles.css" rel="stylesheet" />
     <link href="../../assets/css/adminNavbar.css" rel="stylesheet" />
     <link href="../../assets/css/global.css" rel="stylesheet" />
+
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
     <script src="../../assets/js/script.js"></script>
 </head>
 <body>

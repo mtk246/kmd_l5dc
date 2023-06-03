@@ -21,7 +21,7 @@ if (count($decodeData) > 0) {
     }
 
     if ($user_role === CONST_ADMIN_ROLE) {
-        $redirectUrl = '/' . CONST_PROJECT_FOLDER . '/pages/superadmin/index.php';
+        $redirectUrl = '/' . CONST_PROJECT_FOLDER . '/pages/admin/index.php';
     } elseif ($user_role === CONST_USER_ROLE || $user_role === CONST_GUEST_ROLE) {
         $redirectUrl = '/' . CONST_PROJECT_FOLDER . '/index.php';
     }
