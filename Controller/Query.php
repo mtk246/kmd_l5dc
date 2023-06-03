@@ -14,8 +14,6 @@ class Query {
         $result = mysqli_query($this->conn, $sql);
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-        mysqli_close($this->conn);
-
         return $data;
     }
 }
