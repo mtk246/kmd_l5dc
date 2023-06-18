@@ -9,8 +9,9 @@ $camping = new Camping();
 $campingData = $camping->getCampingData();
 $decodeCampingData = json_decode($campingData, true);
 shuffle($decodeCampingData);
-?>
 
+$count = 4;
+?>
     <!--Home Section-->
     <section class="banner" id="banner">
         <div class="title">
@@ -26,8 +27,9 @@ shuffle($decodeCampingData);
             <h2 class="titetext">Featured Camping</h2>
         </div>
         <div class="content">
-            <?php for($i = 0; $i < 4; $i++) {
-                $campingSite = $decodeCampingData[$i];    
+            <?php for($i = 0; $i < $count; $i++) {
+                if ($i < count($decodeCampingData)) {
+                    $campingSite = $decodeCampingData[$i];
             ?>
                 <div class="box">
                     <div class="imgbx">
@@ -43,6 +45,7 @@ shuffle($decodeCampingData);
                         <a href="" class="btn1">Buy Now</a>
                     </div>
                 </div>
+            <?php } ?>
             <?php } ?>
         </div>
         <a href="" class="sall">SHOW ALL</a>
