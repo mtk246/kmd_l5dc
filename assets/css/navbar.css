@@ -107,6 +107,9 @@ header .navigation li a
 header .navigation li a:hover{
     color: rgb(153, 150, 252);
 }
+.login-button {
+    color: white !important;
+}
 .banner .title
 {
     max-width: 900px;

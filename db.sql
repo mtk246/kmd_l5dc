@@ -4,7 +4,7 @@ USE mtk_camping;
 
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
-    id VARCHAR(100) NOT NULL,
+    id INT(11) NOT NULL AUTO_INCREMENT,
     username VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
     name VARCHAR(100),
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS bookings (
     id VARCHAR(100) NOT NULL,
     camping_site_id VARCHAR(100) NOT NULL,
     user_id VARCHAR(100) NOT NULL,
-    start_date DATE,
-    end_date DATE,
+    start_date TEXT NOT NULL,
+    end_date TEXT NOT NULL,,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)

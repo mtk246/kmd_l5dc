@@ -12,6 +12,15 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
             </div>
             <div class="formBx">
                 <form action="./Auth/auth.php" method="POST">
+                    <?php if (isset($_GET['success']) && $_GET['success'] === 'true') { ?>
+                        <div class="bg-green-600 text-white text-center p-3 rounded my-6">
+                            User registered successfully.
+                        </div>
+                    <?php } else if (isset($_GET['success']) && $_GET['success'] === 'false') { ?>
+                        <div class="bg-red-600 text-white text-center p-3 rounded my-6">
+                            User already exists.
+                        </div>
+                    <?php } ?>
                     <h2>Sign In</h2>
                     <input type="text" name="username" placeholder="Username" />
                     <input type="password" name="password" placeholder="Password" />
@@ -31,13 +40,12 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
         </div>
         <div class="user signupBx">
             <div class="formBx">
-                <form action="" onsubmit="return false;">
+                <form action="./Auth/auth.php" method="POST">
                     <h2>Create an account</h2>
-                    <input type="text" name="" placeholder="Username" />
-                    <input type="email" name="" placeholder="Email Address" />
-                    <input type="password" name="" placeholder="Create Password" />
-                    <input type="password" name="" placeholder="Confirm Password" />
-                    <input type="submit" name="" value="Sign Up" />
+                    <input type="text" name="name" placeholder="Name" />
+                    <input type="text" name="user_name" placeholder="User Name" />
+                    <input type="password" name="password" placeholder="Create Password" />
+                    <input type="submit" name="register" value="Sign Up" />
                     <p class="signup">
                         Already have an account ?
                         <a href="#" onclick="toggleForm();">Sign in.</a>

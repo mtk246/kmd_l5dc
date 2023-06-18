@@ -1682,6 +1682,7 @@ img,video{
 .theme-dark .dark\:focus\:shadow-outline-gray:focus{
     box-shadow:0 0 0 3px rgba(213,214,215,.45)
 }
+
 @media (min-width:640px){
     .sm\:space-y-0>:not(template)~:not(template){
         --space-y-reverse:0;

@@ -103,3 +103,5 @@ $(document).ready(function(){
   ScrollReveal().reveal('.form', { easing: "ease-in", delay: 100 });
   ScrollReveal().reveal('.strip', { easing: "ease-in", delay: 100 });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
