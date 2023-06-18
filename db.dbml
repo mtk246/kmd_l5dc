@@ -1,0 +1,80 @@
+Table "users" {
+  "id" INT(11) [pk, not null, increment]
+  "username" VARCHAR(100) [not null]
+  "password" VARCHAR(100) [not null]
+  "name" VARCHAR(100)
+  "role" VARCHAR(100)
+  "remark" VARCHAR(255)
+  "created_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "updated_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "camping_sites" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(100) [not null]
+  "location" VARCHAR(100)
+  "description" TEXT
+  "created_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "updated_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "features" {
+  "id" INT(11) [pk, not null, increment]
+  "camping_site_id" INT(11) [not null]
+  "feature_name" VARCHAR(100)
+}
+
+Table "local_attractions" {
+  "id" INT(11) [pk, not null, increment]
+  "camping_site_id" INT(11) [not null]
+  "attraction_name" VARCHAR(100)
+}
+
+Table "reviews" {
+  "id" INT(11) [pk, not null, increment]
+  "camping_site_id" INT(11) [not null]
+  "user_id" INT(11) [not null]
+  "rating" INT(11)
+  "comment" TEXT
+  "created_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "updated_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "contacts" {
+  "id" INT(11) [pk, not null, increment]
+  "camping_site_id" INT(11) [not null]
+  "contact_name" VARCHAR(100)
+  "contact_email" VARCHAR(100)
+  "contact_phone" VARCHAR(20)
+}
+
+Table "bookings" {
+  "id" INT(11) [pk, not null, increment]
+  "camping_site_id" INT(11) [not null]
+  "user_id" INT(11) [not null]
+  "start_date" DATE
+  "end_date" DATE
+  "created_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+  "updated_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "rss_feed" {
+  "id" INT(11) [pk, not null, increment]
+  "title" VARCHAR(100)
+  "description" TEXT
+  "published_at" TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+Ref:"camping_sites"."id" < "features"."camping_site_id" [delete: cascade]
+
+Ref:"camping_sites"."id" < "local_attractions"."camping_site_id" [delete: cascade]
+
+Ref:"camping_sites"."id" < "reviews"."camping_site_id" [delete: cascade]
+
+Ref:"users"."id" < "reviews"."user_id" [delete: cascade]
+
+Ref:"camping_sites"."id" < "contacts"."camping_site_id" [delete: cascade]
+
+Ref:"camping_sites"."id" < "bookings"."camping_site_id" [delete: cascade]
+
+Ref:"users"."id" < "bookings"."user_id" [delete: cascade]

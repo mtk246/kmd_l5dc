@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  php_apache:
+    container_name: kmd_l5dc_php
+    image: nimmis/apache-php7
+    volumes:
+      - ./app/public:/var/www/html:Z
+    ports:
+      - 8085:80
+    links:
+      - db
+    restart: always
+  db:
+    image: mysql:5.7
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: always
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: kmd_l5dc_phpmyadmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:

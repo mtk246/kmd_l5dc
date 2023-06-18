@@ -1,0 +1,43 @@
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.text-white {
+    color: var(--text-white);
+}
+
+.p-1 {
+    padding: var(--padding-1);
+}
+
+.ml-4 {
+    margin-left: var(--margin-left-4);
+}
+
+.bg-dark {
+    background-color: var(--bg-dark);
+}
+
+.text-dark {
+    color: var(--text-dark);
+}
+
+.text-danger {
+    color: var(--color-three);
+}
