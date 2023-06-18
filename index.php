@@ -45,7 +45,7 @@ shuffle($decodeCampingData);
                 </div>
             <?php } ?>
         </div>
-        <a href="" class="sall">SHOW ALL</a>
+        <a href="./camping.php" class="sall">SHOW ALL</a>
     </section>
 
     <!--About Section-->
