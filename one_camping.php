@@ -20,7 +20,7 @@ $camping = new Camping();
 $campingData = $camping->getOneCampingData($camping_id);
 $decodeCampingData = json_decode($campingData, true);
 ?>
-<div class="bg-white my-20">
+<div class="my-20">
   <div class="pt-6">
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
@@ -151,3 +151,7 @@ $decodeCampingData = json_decode($campingData, true);
     </div>
   </div>
 </div>
+
+<?php
+require_once("./Components/footer.php");
+?>
