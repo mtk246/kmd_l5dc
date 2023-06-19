@@ -1,5 +1,5 @@
 <?php
-define('CONST_BASE_URL', 'http://localhost/mtk_camping');
+define('CONST_BASE_URL', 'http://localhost:8888/mtk_camping');
 define('CONST_BASE_PATH', dirname(__FILE__));
 define('CONST_ADMIN_ROLE', 'admin');
 define('CONST_USER_ROLE', 'user');

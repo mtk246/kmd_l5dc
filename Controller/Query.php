@@ -23,6 +23,11 @@ class Query {
                     'success' => true,
                     'message' => 'Updated successfully.'
                 ];
+            } else {
+                $this->response = [
+                    'success' => false,
+                    'message' => 'Something went wrong.'
+                ];
             }
     
             return $this->response;
@@ -38,6 +43,22 @@ class Query {
                 $this->response = [
                     'success' => true,
                     'message' => 'Created successfully.'
+                ];
+            } else {
+                $this->response = [
+                    'success' => false,
+                    'message' => 'Something went wrong.'
+                ];
+            }
+    
+            return $this->response;
+        } else if ($this->method === CONST_DELETE) {
+            $result = mysqli_query($this->conn, $sql);
+    
+            if ($result) {
+                $this->response = [
+                    'success' => true,
+                    'message' => 'Deleted successfully.'
                 ];
             } else {
                 $this->response = [

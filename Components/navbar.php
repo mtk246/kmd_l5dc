@@ -32,7 +32,7 @@ $link_arr = array(
   ),
   array(
     "href" => $user ? CONST_BASE_URL . '/Auth/destroy_session.php' : CONST_BASE_URL . '/login.php',
-    "text" => $user ? "Logout" : "Login",
+    "text" => $user ? "Logout" : "Register / Login",
     "type" => "button",
   ),
 );

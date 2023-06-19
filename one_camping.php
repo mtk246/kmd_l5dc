@@ -29,6 +29,12 @@ $decodeCampingData = json_decode($campingData, true);
 $booking = new Booking();
 $bookingData = $booking->getOneBookingData($user_id, $camping_id);
 $decodeBookingData = json_decode($bookingData, true);
+
+if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
+  $bookingId = $_POST['booking_id'];
+  $bookingById = $booking->getOneBookingDataById($bookingId);
+  $decodeBookingById = json_decode($bookingById, true);
+}
 ?>
 <div class="my-16">
   <div class="pt-2">
@@ -42,6 +48,65 @@ $decodeBookingData = json_decode($bookingData, true);
         <?php echo $decodeCampingData[0]['name']; ?> got an error !!
       </div>
     <?php } ?>
+
+    <?php if (isset($_GET['update']) && $_GET['update'] === 'success') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> booking is updated !!
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['update']) && $_GET['update'] === 'failed') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> got an error while updating !!
+      </div>
+    <?php } ?>
+
+    <?php if (isset($_GET['delete']) && $_GET['delete'] === 'success') { ?>
+      <div class="bg-red-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> booking is deleted !!
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['delete']) && $_GET['delete'] === 'failed') { ?>
+      <div class="bg-red-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> got an error while deleting !!
+      </div>
+    <?php } ?>
+
+    <?php 
+    if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
+    ?>
+      <div class="bg-white border p-3 text-center">
+        <form action="./edit_booking.php" method="POST">
+          <div class="text-center my-3">
+            <h2>Edit Booking Date</h2>
+            <div date-rangepicker class="flex items-center text-center justify-center">
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                </div>
+                <input name="start_date" type="text" value="<?php echo $decodeBookingById[0]['start_date']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start">
+              </div>
+              <span class="mx-4 text-gray-500">to</span>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                </div>
+                <input name="end_date" type="text" value="<?php echo $decodeBookingById[0]['end_date']; ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end">
+              </div>
+            </div>
+          </div>
+          <input type="hidden" value="<?php echo $decodeBookingById[0]['camping_site_id']; ?>" name="camping_id">
+          <input type="hidden" value="<?php echo $decodeBookingById[0]['id']; ?>" name="booking_id">
+          <button
+            type="submit"
+            class="mt-5 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+            name="edit_booking"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    <?php } ?>
+    
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
         <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
@@ -230,12 +295,22 @@ $decodeBookingData = json_decode($bookingData, true);
                                   <?php echo $booking['end_date']; ?>
                                 </td>
                                 <td class="px-6 py-4">
-                                  <form action="./edit_booking.php" method="POST">
-                                    <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
-                                    <button type="submit" name="booking" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                      Edit
-                                    </button>
-                                  </form>
+                                  <div class='flex flex-row'>
+                                    <form action="#" method="POST" class="px-2">
+                                      <input type="hidden" name="camping_id" value="<?php echo $booking['camping_site_id']; ?>">
+                                      <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
+                                      <button type="submit" name="edit_booking" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Edit
+                                      </button>
+                                    </form>
+                                    <form action="./delete_booking.php" method="POST">
+                                      <input type="hidden" name="camping_id" value="<?php echo $booking['camping_site_id']; ?>">
+                                      <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
+                                      <button type="submit" name="delete_booking" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        Delete
+                                      </button>
+                                    </form>
+                                  </div>
                                 </td>
                             </tr>
                             <?php } ?>
