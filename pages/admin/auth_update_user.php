@@ -1,6 +1,7 @@
 <?php
 require_once("../../ErrorHandler/error.php");
 require_once("../../Controller/User.php");
+require_once("../../Controller/constants.php");
 
 $submit = $_POST['submit'];
 
@@ -11,7 +12,7 @@ if (isset($submit)) {
     $password = $_POST['password'];
     $role = $_POST['role'];
 } else {
-    $redirectUrl = '/pages/admin/user.php';
+    $redirectUrl = CONST_BASE_URL . '/pages/admin/user.php';
     header("Location: $redirectUrl");
     exit();
 }

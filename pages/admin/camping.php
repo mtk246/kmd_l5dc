@@ -6,7 +6,7 @@ require_once("../../Components/admin/adminNavbar.php");
 require_once("../../Controller/constants.php");
 
 $id = $_SESSION['user_id'];
-$isSuccess = isset($_GET['success']) && $_GET['success'];
+$isSuccess = isset($_GET['update']) && $_GET['update'];
 
 $campingController = new Camping();
 $campingInfos = $campingController->getCampingData();
@@ -24,13 +24,13 @@ $tableHeading = array(
 
 <?php if ($isSuccess) { ?>
     <div class="text-center my-6 p-6">
-        <span class="bg-green-100 p-6 rounded">Camping created successfully</span>
+        <span class="bg-green-100 p-6 rounded">Camping updated successfully</span>
     </div>
 <?php } ?>
 <div class="container px-6 mx-auto grid p-6">
     <div class="w-full overflow-x-auto">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="location.href='create_camping.php'">Create</button>
-        <form action="update_user.php" method="POST">
+        <form action="<?php echo CONST_BASE_URL; ?>/pages/admin/update_camping.php" method="POST">
             <table class="w-full whitespace-no-wrap">
                 <thead>
                     <tr

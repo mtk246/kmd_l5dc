@@ -2,6 +2,7 @@
 require_once("Query.php");
 require_once(__DIR__ . "/constants.php");
 require_once("UUID.php");
+require_once(CONST_BASE_PATH . "/db_connect.php");
 
 class Camping{
     private string $camping_site_id;
@@ -16,8 +17,11 @@ class Camping{
     private string $contact_phone;
     private array $camping; 
     private array $response;
+    private $conn;
 
     function __construct() {
+        global $conn;
+        $this->conn = $conn;
         $this->query = new Query();
     }
 
@@ -35,28 +39,27 @@ class Camping{
         return json_encode($this->camping);
     }
 
-    // function getCurrentUserData($id) {
-    //     $this->id = $id;
+    function getCurrentCampingData($id) {
+        $this->camping_site_id = $id;
 
-    //     $sql = "SELECT * FROM users WHERE id = '$this->id'";
-    //     $this->user = $this->query->executeQuery($sql, CONST_GET);
+        $sql = "SELECT * FROM camping_sites WHERE id = '$this->camping_site_id'";
+        $this->camping = $this->query->executeQuery($sql, CONST_GET);
 
-    //     return json_encode($this->user);
-    // }
+        return json_encode($this->camping);
+    }
 
-    // function updateUserData($id, $name, $username, $password, $role) {
-    //     $this->id = $id;
-    //     $this->name = $name;
-    //     $this->username = $username;
-    //     $this->password = $password;
-    //     $this->role = $role === '1' ? 'admin' : 'user';
+    function updateCampingData($id, $name, $location, $description) {
+        $this->camping_site_id = $id;
+        $this->camping_site_name = $name;
+        $this->location = $location;
+        $this->description = $description;
 
-    //     $sql = "UPDATE users SET name = '$this->name', username = '$this->username', password = '$this->password', role = '$this->role' WHERE id = '$this->id'";
+        $sql = "UPDATE camping_sites SET name = '$this->camping_site_name', location = '$this->location', description = '$this->description' WHERE id = '$this->camping_site_id'";
 
-    //     $this->response = $this->query->executeQuery($sql, CONST_PUT);
+        $this->response = $this->query->executeQuery($sql, CONST_PUT);
 
-    //     return $this->response;
-    // }
+        return $this->response;
+    }
 
     function createCampingData($camping_site_name, $location, $description, $feature_name, $attraction_name, $contact_name, $contact_email, $contact_phone) {
         $uuid_value= new UUID();

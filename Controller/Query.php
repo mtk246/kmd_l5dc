@@ -17,7 +17,7 @@ class Query {
     
         if ($this->method === CONST_PUT) {
             $result = mysqli_query($this->conn, $sql);
-    
+
             if ($result) {
                 $this->response = [
                     'success' => true,

@@ -1,9 +1,9 @@
 <?php
-  $server_name = "localhost";
+  $server_name = "127.0.0.1";
   $username = "root";
-  $password = "";
+  $password = "my_secret_password";
   $database = "mtk_camping";
-  $port = "3306";
+  $port = "3307";
 
   // Create connection
   $conn = mysqli_connect($server_name, $username, $password, $database, $port);
