@@ -5,6 +5,7 @@ require_once("./Components/header.php");
 require_once("./Components/navbar.php");
 require_once("./Controller/Camping.php");
 require_once("./Controller/Booking.php");
+require_once("./Controller/Review.php");
 require_once("./Controller/CountryList.php");
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
@@ -29,6 +30,10 @@ $decodeCampingData = json_decode($campingData, true);
 $booking = new Booking();
 $bookingData = $booking->getOneBookingData($user_id, $camping_id);
 $decodeBookingData = json_decode($bookingData, true);
+
+$review = new Review();
+$reviewData = $review->getReviews();
+$decodeReviewData = json_decode($reviewData, true);
 
 if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
   $bookingId = $_POST['booking_id'];
@@ -199,6 +204,19 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
           </div>
         </div>
       </div>
+
+    <div class="comments">
+      <?php foreach($decodeReviewData as $review) { ?>
+        <div class="flex flex-col bg-white my-5 border p-3 rounded">
+            <div>
+              <?php echo $review['name']; ?>
+            </div>
+            <div class="pt-8">
+              <?php echo $review['comment']; ?>
+            </div>
+        </div>
+      <?php } ?>
+    </div>
     </div>
   </div>
   <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

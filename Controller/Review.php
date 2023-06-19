@@ -17,6 +17,13 @@ class Review{
         $this->query = new Query();
     }
 
+    function getReviews() {
+        $sql = "SELECT * FROM reviews INNER JOIN users u ON u.id = reviews.user_id";
+        $this->camping = $this->query->executeQuery($sql, CONST_GET);
+
+        return json_encode($this->camping);
+    }
+
     // function getOneBookingData($user_id, $camping_id) {
     //     $this->user_id = $user_id;
     //     $this->camping_site_id = $camping_id;
