@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("./ErrorHandler/error.php");
 require_once("./Components/header.php");
 require_once("./Components/navbar.php");
@@ -35,13 +34,23 @@ $review = new Review();
 $reviewData = $review->getReviews();
 $decodeReviewData = json_decode($reviewData, true);
 
+$myReviewData = $review->getMyReview($user_id, $camping_id);
+$decodeMyReviewData = json_decode($myReviewData, true);
+
 if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
   $bookingId = $_POST['booking_id'];
   $bookingById = $booking->getOneBookingDataById($bookingId);
   $decodeBookingById = json_decode($bookingById, true);
 }
+
+if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
+  $reviewId = $_POST['review_id'];
+  $reviewById = $review->getOneReviewDataById($reviewId);
+  $decodeReviewById = json_decode($reviewById, true);
+  var_dump($decodeReviewById);
+}
 ?>
-<div class="my-16">
+<div class="my-24">
   <div class="pt-2">
     <?php if (isset($_GET['book']) && $_GET['book'] === 'success') { ?>
       <div class="bg-green-600 text-center p-3 text-white mb-5 rounded">
@@ -62,6 +71,39 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
     <?php if (isset($_GET['update']) && $_GET['update'] === 'failed') { ?>
       <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
         <?php echo $decodeCampingData[0]['name']; ?> got an error while updating !!
+      </div>
+    <?php } ?>
+
+    <?php if (isset($_GET['review']) && $_GET['review'] === 'success') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> review is added !!
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['review']) && $_GET['review'] === 'failed') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> got an error while adding !!
+      </div>
+    <?php } ?>
+
+    <?php if (isset($_GET['review_update']) && $_GET['review_update'] === 'success') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> review is updated !!
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['review_update']) && $_GET['review_update'] === 'failed') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> got an error while updating !!
+      </div>
+    <?php } ?>
+
+    <?php if (isset($_GET['review_delete']) && $_GET['review_delete'] === 'success') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> review is deleted !!
+      </div>
+    <?php } ?>
+    <?php if (isset($_GET['review_delete']) && $_GET['review_delete'] === 'failed') { ?>
+      <div class="bg-blue-600 text-center p-3 text-white mb-5 rounded">
+        <?php echo $decodeCampingData[0]['name']; ?> got an error while deleting !!
       </div>
     <?php } ?>
 
@@ -111,6 +153,38 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
         </form>
       </div>
     <?php } ?>
+
+    <?php 
+    if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
+    ?>
+      <div class="bg-white border p-3 text-center">
+        <form action="./edit_review.php" method="POST">
+          <div class="text-center my-3">
+            <h2>Edit Booking Review</h2>
+            <div class="flex items-center text-center justify-center">
+              <textarea
+                id="message"
+                rows="4"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                name="message"
+                required
+              >
+                <?php echo $decodeMyReviewData[0]['comment']; ?>
+              </textarea>
+            </div>
+          </div>
+          <input type="hidden" value="<?php echo $decodeMyReviewData[0]['camping_site_id']; ?>" name="camping_id">
+          <input type="hidden" value="<?php echo $decodeMyReviewData[0]['id']; ?>" name="review_id">
+          <button
+            type="submit"
+            class="mt-5 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+            name="edit_booking"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    <?php } ?>
     
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
@@ -148,14 +222,20 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
                 <?php } ?>
           </button>
         </form>
-
           <?php if ($user_id !== "" && count($decodeBookingData) > 0) { ?> 
           <button data-modal-target="defaultModal2" data-modal-toggle="defaultModal2" class="mt-2 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-600 px-8 py-3 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="button">
             Show My Booking
           </button>
           <?php } ?>
 
+          <?php if ($user_id !== "" && count($decodeMyReviewData) > 0) { ?> 
+          <button data-modal-target="defaultModal3" data-modal-toggle="defaultModal3" class="mt-2 flex w-full items-center justify-center rounded-md border border-transparent bg-yellow-600 px-8 py-3 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="button">
+            Show My Reviews
+          </button>
+          <?php } ?>
+
         <!-- Reviews -->
+        <?php if ($user_id !== "") { ?> 
         <div class="mt-6">
           <h3 class="sr-only">Reviews</h3>
           <div class="">
@@ -169,7 +249,7 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
                 placeholder="Write your thoughts here..."
                 name="message"
                 required
-              >t
+              >
               </textarea>
               <button
                 class="mt-2 flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -180,6 +260,7 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
             </form>
           </div>
         </div>
+        <?php } ?>
       </div>
 
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
@@ -338,6 +419,71 @@ if (isset($_POST['edit_booking']) && isset($_POST['booking_id'])) {
               <!-- Modal footer -->
               <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                   <button data-modal-hide="defaultModal2" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="defaultModal3" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-2xl max-h-full">
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    <?php echo $decodeCampingData[0]['name']; ?>
+                  </h3>
+                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal3">
+                      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <div class="text-center">
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Comment
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($decodeMyReviewData as $myReview) { ?>
+                              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">
+                                  <?php echo $myReview['comment']; ?>
+                                </td>
+                                <td class="px-6 py-4">
+                                  <div class='flex flex-row'>
+                                    <form action="#" method="POST" class="px-2">
+                                      <input type="hidden" name="camping_id" value="<?php echo $myReview['camping_site_id']; ?>">
+                                      <input type="hidden" name="review_id" value="<?php echo $myReview['id']; ?>">
+                                      <button type="submit" name="edit_review" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Edit
+                                      </button>
+                                    </form>
+                                    <form action="./delete_review.php" method="POST">
+                                      <input type="hidden" name="camping_id" value="<?php echo $myReview['camping_site_id']; ?>">
+                                      <input type="hidden" name="review_id" value="<?php echo $myReview['id']; ?>">
+                                      <button type="submit" name="delete_review" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        Delete
+                                      </button>
+                                    </form>
+                                  </div>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <!-- Modal footer -->
+              <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                  <button data-modal-hide="defaultModal3" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Close</button>
               </div>
           </div>
       </div>
