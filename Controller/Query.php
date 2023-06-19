@@ -38,7 +38,6 @@ class Query {
             return $data;
         } else if ($this->method === CONST_POST) {
             $result = mysqli_query($this->conn, $sql);
-    
             if ($result) {
                 $this->response = [
                     'success' => true,

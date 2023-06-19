@@ -10,7 +10,7 @@ $camping_id = $_POST['camping_id'];
 $delete_booking = $_POST['delete_booking'];
 
 if (!isset($delete_booking)) {
-    $redirectUrl = CONST_BASE_URL . '/booking.php';
+    $redirectUrl = CONST_BASE_URL . '/one_camping.php';
     header("Location: $redirectUrl");
     exit();
 }

@@ -13,7 +13,7 @@ $end_date = $_POST['end_date'];
 echo $start_date;
 
 if (!isset($booking_id)) {
-    $redirectUrl = CONST_BASE_URL . '/booking.php';
+    $redirectUrl = CONST_BASE_URL . '/one_camping.php';
     header("Location: $redirectUrl");
     exit();
 }

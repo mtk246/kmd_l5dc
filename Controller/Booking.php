@@ -17,13 +17,6 @@ class Booking{
         $this->query = new Query();
     }
 
-    // function getCampingData() {
-    //     $sql = "SELECT * FROM camping_sites";
-    //     $this->camping = $this->query->executeQuery($sql, CONST_GET);
-
-    //     return json_encode($this->camping);
-    // }
-
     function getOneBookingData($user_id, $camping_id) {
         $this->user_id = $user_id;
         $this->camping_site_id = $camping_id;
