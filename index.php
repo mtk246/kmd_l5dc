@@ -15,9 +15,9 @@ $count = 4;
     <!--Home Section-->
     <section class="banner" id="banner">
         <div class="title">
-            <h1>YOUR BEST FRIEND<br>DESERVES THE<br>BEST MEAL</h1>
+            <h1>YOUR BEST COLLEAGUES<br>DESERVES THE<br>BEST CAMPING EXPERIENCE</h1>
         </div>
-        <a href="" class="btn">SHOP NOW</a>
+        <a href="" class="btn">Discover Now</a>
     </section>
 
     <!--Shop Section-->
@@ -42,7 +42,7 @@ $count = 4;
                     <?php echo CountryList::getConstantArray()[$campingSite['location']]; ?>
                     </div>
                     <div class="imgbtn">
-                        <a href="" class="btn1">Buy Now</a>
+                        <a href="./one_camping.php?camping_id=<?php echo $decodeCampingData[$i]['id']; ?>" class="btn1">Show</a>
                     </div>
                 </div>
             <?php } ?>
@@ -58,19 +58,19 @@ $count = 4;
             <h2 class="titetext">ABOUT US</h2>
         </div>
         <div class="imgtext">
-            <img src="https://i.postimg.cc/G2v0JHVQ/pexels-blue-bird-7210284.jpg" alt="">
+            <img src="https://wallpaperaccess.com/full/181060.jpg" alt="">
             <div class="info">
                 <div class="infocontent">
-                    <h3>NATURAL <br>INGREDIENTS</h3>
-                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, facilis!"</p>
+                    <h3>BEST <br>CAMPING EXPERIENCE</h3>
+                    <p>"We are the best camping experience"</p>
                 </div>
                 <div class="infocontent">
-                    <h3>100% HOME MADE</h3>
-                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, facilis!"</p>
+                    <h3>BEST <br>CAMPER</h3>
+                    <p>"Best campers in the world"</p>
                 </div>
                 <div class="infocontent">
-                    <h3>SOURCED IN US</h3>
-                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, facilis!"</p>
+                    <h3>Discover Worldwide</h3>
+                    <p>"Discover the world in our camping website"</p>
                 </div>
             </div>
         </div>
@@ -80,18 +80,18 @@ $count = 4;
 
     <section class="review" id="review">
         <div class="title">
-            <h2 class="titetext">DOGGO REVIEWS</h2>
+            <h2 class="titetext">CAMPERS REVIEWS</h2>
             <p>“ Dogs do speak, but only to those who know how to listen. ”</p>
         </div>
         <div class="container">
                 <div class="cbox1 bbox">
-                    <img src="https://i.postimg.cc/HxdpGL8T/pexels-yaroslav-shuraev-8499233.jpg" alt="">
+                    <img src="https://images.alphacoders.com/112/1129769.jpg" alt="">
                 </div>
                 <div class="cbox2 bbox">
                     <h1>OUR HAPPY CUSTOMERS</h1>
                 </div>
                 <div class="cbox3 bbox">
-                    <img src="https://i.postimg.cc/pX9sHJHL/pexels-ad-thiry-13270038.jpg" alt="">
+                    <img src="https://images.alphacoders.com/112/1129769.jpg" alt="">
                 </div>
                 <div class="cbox4 bbox">
                     <div class="boxdetail">
@@ -122,55 +122,12 @@ $count = 4;
 
     <!--Reviews Section-->
 
-    <section class="contact" id="contact">
-        <div class="footer">
-            <div class="links">
-                <ul class="navigation">
-                    <li><a href="#banner" class="out">HOME</a></li>
-                    <li><a href="#shop" class="out">SHOP</a></li>
-                    <li><a href="#about" class="out">ABOUT</a></li>
-                    <li><a href="#reviews" class="out">REVIEWS</a></li>
-                    <li><a href="#contact" class="out">CONTACT</a></li>
-                </ul>
-            </div>
-            <div class="info">
-                <h1>INFO</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel quo eligendi laborum explicabo, porro quaerat eveniet ad iusto natus, maiores cupiditate fuga magnam impedit! Ipsam eum aut obcaecati consequuntur veniam!</p>
-            </div>
-            <div class="cs">
-                <h1>CUSTOMER SERVICE</h1>
-                <ul>
-                    <li>123-456-789</li>
-                    <li>0000-3615-9756-2519</li>
-                    <li>dogsbites@gmail.com</li>
-                </ul>
-            </div>
-            <div class="slinks">
-                <h1>FOLLOW US</h1>
-                <div class="link">
-                    <a href="https://www.linkedin.com/in/gururaj-math-223360255/" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
-                    <a href="https://codepen.io/gururajmath"><i class='bx bxl-codepen' target="_blank"></i></a>
-                    <a href="https://github.com/Gururaj-Math" target="_blank"><i class='bx bxl-github'></i></a>
-            </div>
-        </div>
-    </section>
-
     <!--Form-->
     
     <section class="form">
-        <h1>JOIN OUT FURRY COMMUNITY</h1>
+        <h1>JOIN OUT CAMPERS COMMUNITY</h1>
         <input type="email" placeholder="Enter your email here">
         <button>JOIN</button>
-    </section>
-
-    <section class="strip">
-        <h1>Design and code by Gururaj</h1>
-        <div class="icons">
-            <a href="https://www.linkedin.com/in/gururaj-math-223360255/" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
-            <a href="https://codepen.io/gururajmath"><i class='bx bxl-codepen' target="_blank"></i></a>
-            <a href="https://github.com/Gururaj-Math" target="_blank"><i class='bx bxl-github'></i></a>
-            </div>
-        </div>
     </section>
 <?php
 require_once("./Components/footer.php");
