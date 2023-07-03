@@ -41,3 +41,7 @@
 .text-danger {
     color: var(--color-three);
 }
+
+.text-wrap {
+    text-wrap: wrap !important
+}

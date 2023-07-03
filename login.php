@@ -1,7 +1,17 @@
 <?php
+session_start();
 require_once("./Components/header.php");
 
 $error = isset($_GET['error']) ? $_GET['error'] : null;
+
+if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] >= 3) {
+    $_SESSION['login_error_time'] = time();
+}
+
+if (isset($_SESSION['login_error_time']) && (time() - $_SESSION['login_error_time'] >= 60)) {
+    unset($_SESSION['login_error_attempt']);
+    unset($_SESSION['login_error_time']);
+}
 ?>
 
 <section>
@@ -24,11 +34,20 @@ $error = isset($_GET['error']) ? $_GET['error'] : null;
                     <h2>Sign In</h2>
                     <input type="text" name="username" placeholder="Username" />
                     <input type="password" name="password" placeholder="Password" />
-                    <input type="submit" name="submit" value="Login" />
+                    <?php if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] >= 3) { ?>
+                        <input type="submit" name="submit" value="Login" disabled/>
+                    <?php } else { ?>
+                        <input type="submit" name="submit" value="Login" />
+                    <?php } ?>
                     <br/>
                     <?php if ($error === 'true') { ?>
                         <p class="text-danger text-sm">
                             Invalid username or password
+                        </p>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] >= 3) { ?>
+                        <p class="text-danger text-sm">
+                            Login and register are disabled for 1 minute due to multiple login attempts. Please try again later.
                         </p>
                     <?php } ?>
                     <p class="signup">

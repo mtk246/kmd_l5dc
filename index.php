@@ -13,12 +13,49 @@ shuffle($decodeCampingData);
 $count = 4;
 ?>
     <!--Home Section-->
-    <section class="banner" id="banner">
-        <div class="title">
-            <h1>YOUR BEST COLLEAGUES<br>DESERVES THE<br>BEST CAMPING EXPERIENCE</h1>
+    <div class="banner" id="banner">
+        <div id="default-carousel" class="relative w-full" data-carousel="slide">
+            <!-- Carousel wrapper -->
+            <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                <?php for($i = 0; $i < $count; $i++) {
+                    if ($i < count($decodeCampingData)) {
+                        $campingSite = $decodeCampingData[$i];
+                ?>
+                    <?php if ($campingSite['image'] !== '') { ?>
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="./assets/images/<?php echo $campingSite['image']; ?>" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+                <?php } ?>
+            </div>
+            <!-- Slider indicators -->
+            <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                <?php for($i = 0; $i < $count; $i++) {
+                    if ($i < count($decodeCampingData)) {
+                        $campingSite = $decodeCampingData[$i];
+                ?>
+                    <?php if ($campingSite['image'] !== '') { ?>
+                        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <?php } ?>
+                <?php } ?>
+                <?php } ?>
+            </div>
+            <!-- Slider controls -->
+            <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+            </button>
+            <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <span class="sr-only">Next</span>
+                </span>
+            </button>
         </div>
-        <a href="" class="btn">Discover Now</a>
-    </section>
+    </div>
 
     <!--Shop Section-->
 
@@ -33,7 +70,11 @@ $count = 4;
             ?>
                 <div class="box">
                     <div class="imgbx">
-                        <img src="https://static.wixstatic.com/media/84770f_b29b9b581f7743aa9b5aafd7c2f8398c~mv2_d_2635_2710_s_4_2.png/v1/fill/w_246,h_253,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84770f_b29b9b581f7743aa9b5aafd7c2f8398c~mv2_d_2635_2710_s_4_2.png" alt="">
+                        <?php if ($campingSite['image'] !== '') { ?>
+                            <img src="./assets/images/<?php echo $campingSite['image']; ?>" alt="" width="200" height="200">
+                        <?php } else { ?>
+                            <img src="./assets/images/no_image_found.png" alt="" width="200" height="200">
+                        <?php } ?>
                     </div>
                     <div class="text">
                         <?php echo $campingSite['name'] ?>

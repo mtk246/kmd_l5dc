@@ -30,23 +30,23 @@ $tableHeading = array(
 <div class="container px-6 mx-auto grid p-6">
     <div class="w-full overflow-x-auto">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="location.href='create_camping.php'">Create</button>
-        <form action="<?php echo CONST_BASE_URL; ?>/pages/admin/update_camping.php" method="POST">
-            <table class="w-full whitespace-no-wrap">
-                <thead>
-                    <tr
-                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                        <?php foreach ($tableHeading as $tHead) { ?>
-                            <th class="px-4 py-3">
-                                <?php echo $tHead; ?>
-                            </th>
-                        <?php } ?>
-                    </tr>
-                </thead>
-                <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+        <table class="w-full whitespace-no-wrap">
+            <thead>
+                <tr
+                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
-                    <?php foreach ($decodeCampingInfos as $camping) { ?>
+                    <?php foreach ($tableHeading as $tHead) { ?>
+                        <th class="px-4 py-3">
+                            <?php echo $tHead; ?>
+                        </th>
+                    <?php } ?>
+                </tr>
+            </thead>
+            <tbody
+                class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+            >
+                <?php foreach ($decodeCampingInfos as $camping) { ?>
+                    <form action="<?php echo CONST_BASE_URL; ?>/pages/admin/update_camping.php" method="POST">
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $camping['name']; ?>
@@ -54,7 +54,7 @@ $tableHeading = array(
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $camping['location']; ?>
                             </td>
-                            <td class="px-4 py-3 text-sm">
+                            <td class="px-4 py-3 text-sm text-wrap">
                                 <?php echo $camping['description']; ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
@@ -65,7 +65,7 @@ $tableHeading = array(
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <input
-                                    type="hidden"
+                                    type="text"
                                     name="update_camping_id"
                                     value="<?php echo $camping['id']; ?>"
                                 />
@@ -76,10 +76,10 @@ $tableHeading = array(
                                 </button>
                             </td>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </form>
+                    </form>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

@@ -31,6 +31,12 @@ if (isset($_POST['submit'])) {
         }
     } else {
         $redirectUrl = CONST_BASE_URL . '/login.php?error=true';
+        if (isset($_SESSION['login_error_attempt'])) {
+            $_SESSION['login_error_attempt'] += 1;
+        } else {
+            $_SESSION['login_error_attempt'] = 1;
+        }
+
         header("Location: $redirectUrl");
         exit();
     }

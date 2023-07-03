@@ -17,16 +17,24 @@ class Camping{
     private string $contact_phone;
     private array $camping; 
     private array $response;
-    private $conn;
+    private string $image_path;
+    private string $search_result;
 
     function __construct() {
-        global $conn;
-        $this->conn = $conn;
         $this->query = new Query();
     }
 
     function getCampingData() {
         $sql = "SELECT * FROM camping_sites";
+        $this->camping = $this->query->executeQuery($sql, CONST_GET);
+
+        return json_encode($this->camping);
+    }
+
+    function getCampingDataBySearch($search_result) {
+        $this->search_result = $search_result;
+
+        $sql = "SELECT * FROM camping_sites WHERE name LIKE '%{$this->search_result}%'";
         $this->camping = $this->query->executeQuery($sql, CONST_GET);
 
         return json_encode($this->camping);
@@ -48,13 +56,15 @@ class Camping{
         return json_encode($this->camping);
     }
 
-    function updateCampingData($id, $name, $location, $description) {
+    function updateCampingData($id, $name, $location, $description, $image_path) {
         $this->camping_site_id = $id;
         $this->camping_site_name = $name;
         $this->location = $location;
         $this->description = $description;
+        $this->image_path = $image_path;
 
-        $sql = "UPDATE camping_sites SET name = '$this->camping_site_name', location = '$this->location', description = '$this->description' WHERE id = '$this->camping_site_id'";
+
+        $sql = "UPDATE camping_sites SET name = '$this->camping_site_name', location = '$this->location', description = '$this->description', image = '$this->image_path' WHERE id = '$this->camping_site_id'";
 
         $this->response = $this->query->executeQuery($sql, CONST_PUT);
 

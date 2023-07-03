@@ -29,3 +29,29 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+
+<?php
+require_once("./Controller/VisitorCount.php");
+
+function getUserIpAddr(){
+  if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+  }
+  elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  }
+  else{
+    $ip = $_SERVER['REMOTE_ADDR'];
+  }
+  return $ip;
+}
+
+$ip = getUserIpAddr();
+
+$visitorCountController = new VisitorCount();
+
+$isIpExisted = $visitorCountController->getOneVisitCount($ip);
+if (count(json_decode($isIpExisted, true)) === 0) {
+  $createCamping = $visitorCountController->postVisitCount($ip);
+}
+?>

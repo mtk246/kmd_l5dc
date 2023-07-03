@@ -62,6 +62,16 @@ $inputsArr = array(
         "isRequired" => true,
         "isTypeSelect" => false,
     ),
+    array(
+        "id" => "image",
+        "name" => "image",
+        "label" => "Image",
+        "placeholder" => "Image",
+        "type" => "file",
+        "value" => $campingDecode[0]['image'],
+        "isRequired" => true,
+        "isTypeSelect" => false,
+    ),
 );
 ?>
 
@@ -72,7 +82,7 @@ require_once("../../Components/admin/adminNavbar.php");
 
 <div class="container px-6 mx-auto grid p-6">
     <div class="w-full overflow-x-auto">
-        <form class="w-full max-w-lg" action="<?php echo CONST_BASE_URL; ?>/pages/admin/auth_update_camping.php" method="POST">
+        <form class="w-full max-w-lg" action="<?php echo CONST_BASE_URL; ?>/pages/admin/auth_update_camping.php" method="POST" enctype="multipart/form-data">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <?php foreach($inputsArr as $input) { ?>
                     <?php if ($input['type'] === 'hidden') { ?>
@@ -86,7 +96,7 @@ require_once("../../Components/admin/adminNavbar.php");
                             required
                         >
                     <?php } ?>
-                    <?php if ($input['type'] !== 'hidden' && $input['type'] !== 'role' && $input['type'] !== 'textarea') { ?>
+                    <?php if ($input['type'] !== 'hidden' && $input['type'] !== 'role' && $input['type'] !== 'textarea' && $input['type'] !== 'file') { ?>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="<?php echo $input['id']; ?>">
                                 <?php echo $input['label']; ?>
@@ -143,6 +153,23 @@ require_once("../../Components/admin/adminNavbar.php");
                                 <?php echo $input['value'];  ?>
                             </textarea>
                         </div>
+                    <?php } ?>
+                    <?php if ($input['type'] === 'file') { ?>
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                                Image
+                            </label>
+                            <?php if ($input['value'] !== '') { ?>
+                                <img
+                                    src="../../assets/images/<?php echo $input['value']; ?>"
+                                    alt=""
+                                >
+                            <?php } ?>
+                            <input
+                                type="<?php echo $input['type']; ?>"
+                                name="imageToUpload"
+                                id="<?php echo $input['id']; ?>"
+                            >
                     <?php } ?>
                 <?php } ?>
             </div>

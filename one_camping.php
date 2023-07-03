@@ -185,10 +185,20 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
         </form>
       </div>
     <?php } ?>
+
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
+      <a href="./camping.php" class="text-center mt-6 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">
+        Back
+      </a>
+    </div>
     
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+        <?php if ($decodeCampingData[0]['image'] !== "") { ?>
+          <img src="./assets/images/<?php echo $decodeCampingData[0]['image']; ?>" alt="camping_image" class="h-full w-full object-cover object-center">
+        <?php } else { ?>
+          <img src="./assets//images/no_image_found.png" alt="camping_image" class="h-full w-full object-cover object-center">
+        <?php } ?>
       </div>
     </div>
 
@@ -285,6 +295,44 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
           </div>
         </div>
       </div>
+
+    <div class="maps">
+      <?php
+      $curl = curl_init();
+      
+      curl_setopt_array($curl, [
+        CURLOPT_URL => "https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=". urlencode($decodeCampingData[0]['name']) ."&language=en",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => [
+          "X-RapidAPI-Host: google-maps-geocoding.p.rapidapi.com",
+          "X-RapidAPI-Key: ce0a849cc9msh972a168303f9c76p183879jsn1568dabd8c01"
+        ],
+      ]);
+      
+      $response = curl_exec($curl);
+      $err = curl_error($curl);
+      
+      curl_close($curl);
+      
+      if ($err) {
+        echo "cURL Error #:" . $err;
+      } else {
+        $geocoding_data = json_decode($response, true);
+        $latitude = $geocoding_data['results'][0]['geometry']['location']['lat'];
+        $longitude = $geocoding_data['results'][0]['geometry']['location']['lng'];
+
+        $maps_embed_url = 'https://maps.google.com/maps?q=' . $latitude . ',' . $longitude . '&t=&z=15&ie=UTF8&iwloc=&output=embed';
+
+        echo '<iframe src="' . $maps_embed_url . '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      }
+      ?>
+    </div>
+    <br/>
 
     <div class="comments">
       <?php foreach($decodeReviewData as $review) { ?>
