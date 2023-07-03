@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 03, 2023 at 08:50 AM
+-- Generation Time: Jul 03, 2023 at 09:21 AM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -42,7 +42,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `camping_site_id`, `user_id`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
-('b6d51b97-fca7-4405-88fd-7c30fe660009', '059770b8-b023-4c83-b14d-255098f41e0c', '2', '06/01/2023', '06/07/2023', '2023-06-19 06:18:54', '2023-06-19 06:19:03');
+('20cc8d80-7491-4a6a-9dcd-a509f02fee51', '059770b8-b023-4c83-b14d-255098f41e0c', '2', '07/04/2023', '07/04/2023', '2023-07-03 08:51:50', '2023-07-03 08:51:50');
 
 -- --------------------------------------------------------
 
@@ -163,9 +163,10 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `camping_site_id`, `user_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
-('7f8f0681-814a-4d11-9bc7-e7b45953b462', '059770b8-b023-4c83-b14d-255098f41e0c', '2', NULL, 'hello', '2023-06-19 06:48:56', '2023-06-19 09:01:25'),
-('a4f33000-2138-4fe8-8d93-8178ec968460', '059770b8-b023-4c83-b14d-255098f41e0c', '2', NULL, 'greate sea view', '2023-06-19 06:48:23', '2023-06-19 06:48:23'),
-('fadb0b06-3a27-45d5-af85-0b17fd33e802', '059770b8-b023-4c83-b14d-255098f41e0c', '2', NULL, 'hello', '2023-06-19 09:09:53', '2023-06-19 09:09:53');
+('4f35c752-d057-48f6-8fc0-5adcccc179b9', '8c7ccb12-d67b-4084-8036-dc3f61dfec53', '2', NULL, 'Amazing Sea View', '2023-07-03 09:10:25', '2023-07-03 09:10:25'),
+('75987a27-52b1-4bba-8894-f22c05933f8d', 'c3c41639-2c95-4a78-b70a-0d67d1052c8b', '2', NULL, 'Amazing Opera              ', '2023-07-03 09:10:44', '2023-07-03 09:10:44'),
+('a4f33000-2138-4fe8-8d93-8178ec968460', '059770b8-b023-4c83-b14d-255098f41e0c', '2', NULL, 'Amazing Food! Amazing Restaurants', '2023-06-19 06:48:23', '2023-07-03 09:15:06'),
+('fadb0b06-3a27-45d5-af85-0b17fd33e802', '059770b8-b023-4c83-b14d-255098f41e0c', '2', NULL, 'Amazing amusement', '2023-06-19 09:09:53', '2023-07-03 09:21:30');
 
 -- --------------------------------------------------------
 

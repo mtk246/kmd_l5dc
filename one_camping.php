@@ -31,7 +31,7 @@ $bookingData = $booking->getOneBookingData($user_id, $camping_id);
 $decodeBookingData = json_decode($bookingData, true);
 
 $review = new Review();
-$reviewData = $review->getReviews();
+$reviewData = $review->getReviews($camping_id);
 $decodeReviewData = json_decode($reviewData, true);
 
 $myReviewData = $review->getMyReview($user_id, $camping_id);
@@ -47,7 +47,6 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
   $reviewId = $_POST['review_id'];
   $reviewById = $review->getOneReviewDataById($reviewId);
   $decodeReviewById = json_decode($reviewById, true);
-  var_dump($decodeReviewById);
 }
 ?>
 <div class="my-24">
@@ -169,12 +168,12 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
                 name="message"
                 required
               >
-                <?php echo $decodeMyReviewData[0]['comment']; ?>
+                <?php echo $decodeReviewById[0]['comment']; ?>
               </textarea>
             </div>
           </div>
-          <input type="hidden" value="<?php echo $decodeMyReviewData[0]['camping_site_id']; ?>" name="camping_id">
-          <input type="hidden" value="<?php echo $decodeMyReviewData[0]['id']; ?>" name="review_id">
+          <input type="hidden" value="<?php echo $decodeReviewById[0]['camping_site_id']; ?>" name="camping_id">
+          <input type="hidden" value="<?php echo $decodeReviewById[0]['id']; ?>" name="review_id">
           <button
             type="submit"
             class="mt-5 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
@@ -250,7 +249,7 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
           <h3 class="sr-only">Reviews</h3>
           <div class="">
             <form action="./submit_review.php" method="POST">
-              <input type="hidden" value="<?php echo $decodeBookingData[0]['camping_site_id']; ?>" name="camping_id">
+              <input type="hidden" value="<?php echo $decodeCampingData[0]['id']; ?>" name="camping_id">
               <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
               <textarea
                 id="message"

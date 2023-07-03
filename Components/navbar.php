@@ -2,7 +2,7 @@
 session_start();
 require_once("./Controller/constants.php");
 
-$user = isset($_SESSION['user']) ? $_SESSION['user'] : "";
+$user = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "";
 
 $link_arr = array(
   array(
