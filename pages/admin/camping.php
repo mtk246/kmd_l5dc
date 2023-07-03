@@ -65,7 +65,7 @@ $tableHeading = array(
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <input
-                                    type="text"
+                                    type="hidden"
                                     name="update_camping_id"
                                     value="<?php echo $camping['id']; ?>"
                                 />
