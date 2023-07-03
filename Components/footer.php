@@ -2,9 +2,9 @@
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MTK</span>
-              </a>
+                <a href="https://flowbite.com/" class="flex items-center">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MTK</span>
+                </a>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
@@ -95,3 +95,9 @@ $(document).ready(function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+       new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+</script>

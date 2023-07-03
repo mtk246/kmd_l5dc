@@ -60,6 +60,7 @@ $link_arr = array(
         </li>
         <?php } ?>
       <?php } ?>
+      <div id="google_translate_element"></div>
     </ul>
     <div class="hamburger">
         <i class="fa-solid fa-bars on" id="on"></i>
