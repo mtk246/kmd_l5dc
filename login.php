@@ -34,12 +34,18 @@ if (isset($_SESSION['login_error_time']) && (time() - $_SESSION['login_error_tim
                     <h2>Sign In</h2>
                     <input type="text" name="username" placeholder="Username" />
                     <input type="password" name="password" placeholder="Password" />
+                    <div class="g-recaptcha" data-sitekey="6Lfgce4mAAAAAJw20N758aB4z8kkfPP9zYhQIL_Q"></div>
                     <?php if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] >= 3) { ?>
                         <input type="submit" name="submit" value="Login" disabled/>
                     <?php } else { ?>
                         <input type="submit" name="submit" value="Login" />
                     <?php } ?>
                     <br/>
+                    <?php if (isset($_GET['verify'])) { ?>
+                        <p class="text-danger text-sm">
+                            There's an error with the reCAPTCHA.
+                        </p>
+                    <?php } ?>
                     <?php if ($error === 'true') { ?>
                         <p class="text-danger text-sm">
                             Invalid username or password

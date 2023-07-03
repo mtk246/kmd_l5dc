@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 03, 2023 at 07:39 AM
+-- Generation Time: Jul 03, 2023 at 08:50 AM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -65,11 +65,11 @@ CREATE TABLE `camping_sites` (
 --
 
 INSERT INTO `camping_sites` (`id`, `name`, `location`, `description`, `image`, `created_at`, `updated_at`) VALUES
-('059770b8-b023-4c83-b14d-255098f41e0c', 'Camping 5', 'SG', 'iManage Stock Management Application', '', '2023-06-19 05:40:16', '2023-06-19 05:40:16'),
-('22664acc-3e56-4bd4-9bb4-41a6481af36c', 'Singapore', 'SG', 'Singapore Attraction', '', '2023-06-19 17:09:43', '2023-06-19 17:09:43'),
+('059770b8-b023-4c83-b14d-255098f41e0c', 'Bangkok Asiatique The Riverfront', 'TH', 'Bangkok beautiful camping sites', 'asiatique-riverfront.jpeg', '2023-06-19 05:40:16', '2023-07-03 07:49:39'),
+('22664acc-3e56-4bd4-9bb4-41a6481af36c', 'Singapore', 'SG', '                                Singapore Attraction                            ', 'Singapore_place.jpeg', '2023-06-19 17:09:43', '2023-07-03 07:48:04'),
 ('8c7ccb12-d67b-4084-8036-dc3f61dfec53', 'Maldives', 'TH', '                                                                                                Camping is a cherished outdoor activity that allows individuals to immerse themselves in nature and temporarily escape the trappings of modern life. It involves setting up temporary shelters, such as tents or cabins, in designated camping areas, which can range from national parks and forests to private campgrounds and remote wilderness locations.                                                                                                                ', 'Hero_Soneva Jani Chapter Two by Aksham Abdul Ghadir.webp', '2023-06-19 05:40:00', '2023-07-03 05:31:42'),
-('c03f1074-d8f7-4a59-b241-19e54524c95f', 'Bagan', 'MM', 'Bagan Pagodas', '', '2023-06-19 17:09:20', '2023-06-19 17:09:20'),
-('c3c41639-2c95-4a78-b70a-0d67d1052c8b', 'Sydney', 'AU', '                                                                                                Sydney Climbing Hills                                                                                    ', 'viber_image_2023-04-04_20-27-06-477.png', '2023-06-19 17:08:07', '2023-07-03 05:23:33');
+('c03f1074-d8f7-4a59-b241-19e54524c95f', 'Bagan', 'MM', '                                Bagan Pagodas                            ', 'sunrise-over-bagan.jpeg', '2023-06-19 17:09:20', '2023-07-03 07:50:14'),
+('c3c41639-2c95-4a78-b70a-0d67d1052c8b', 'Sydney', 'AU', '                                                                                                                                Sydney Climbing Hills                                                                                                                ', 'Sydney-Opera-House-Port-Jackson.webp', '2023-06-19 17:08:07', '2023-07-03 07:50:37');
 
 -- --------------------------------------------------------
 
@@ -224,7 +224,8 @@ CREATE TABLE `visit_counter` (
 --
 
 INSERT INTO `visit_counter` (`id`, `ip_address`, `created_at`, `updated_at`) VALUES
-(1, '::1', '2023-07-03 07:38:33', '2023-07-03 07:38:33');
+(1, '::1', '2023-07-03 07:38:33', '2023-07-03 07:38:33'),
+(2, '127.0.0.1', '2023-07-03 08:35:28', '2023-07-03 08:35:28');
 
 --
 -- Indexes for dumped tables
@@ -298,7 +299,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visit_counter`
 --
 ALTER TABLE `visit_counter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
