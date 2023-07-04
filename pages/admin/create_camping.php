@@ -84,6 +84,15 @@ $inputsArr = array(
         "isRequired" => true,
         "isTypeSelect" => false,
     ),
+    array(
+        "id" => "image",
+        "name" => "image",
+        "label" => "Image",
+        "placeholder" => "Image",
+        "type" => "file",
+        "isRequired" => true,
+        "isTypeSelect" => false,
+    ),
 );
 ?>
 
@@ -100,10 +109,11 @@ $country_arr = CountryList::getConstantArray();
             class="w-full max-w-lg"
             action="<?php echo CONST_BASE_URL . '/pages/admin/auth_create_camping.php'; ?>"
             method="POST"
+            enctype="multipart/form-data"
         >
             <div class="flex flex-wrap -mx-3 mb-6">
                 <?php foreach($inputsArr as $input) { ?>
-                    <?php if ($input['type'] !== 'select') { ?>
+                    <?php if ($input['type'] !== 'select' && $input['type'] !== 'file') { ?>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="<?php echo $input['id']; ?>">
                                 <?php echo $input['label']; ?>
@@ -136,6 +146,18 @@ $country_arr = CountryList::getConstantArray();
                                     <?php } ?>
                                 </select>
                             </div>
+                        </div>
+                    <?php } ?>
+                    <?php if ($input['type'] === 'file') { ?>
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                                Image
+                            </label>
+                            <input
+                                type="<?php echo $input['type']; ?>"
+                                name="imageToUpload"
+                                id="<?php echo $input['id']; ?>"
+                            >
                         </div>
                     <?php } ?>
                 <?php } ?>

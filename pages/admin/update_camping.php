@@ -163,6 +163,7 @@ require_once("../../Components/admin/adminNavbar.php");
                                 <img
                                     src="../../assets/images/<?php echo $input['value']; ?>"
                                     alt=""
+                                    class="py-3"
                                 >
                             <?php } ?>
                             <input
@@ -170,6 +171,7 @@ require_once("../../Components/admin/adminNavbar.php");
                                 name="imageToUpload"
                                 id="<?php echo $input['id']; ?>"
                             >
+                        </div>
                     <?php } ?>
                 <?php } ?>
             </div>

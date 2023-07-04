@@ -1,7 +1,7 @@
 <?php
   $server_name = "localhost";
   $username = "root";
-  $password = "";
+  $password = "root";
   $database = "mtk_camping";
   $port = "3306";
 

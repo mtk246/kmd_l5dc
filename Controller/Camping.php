@@ -71,7 +71,7 @@ class Camping{
         return $this->response;
     }
 
-    function createCampingData($camping_site_name, $location, $description, $feature_name, $attraction_name, $contact_name, $contact_email, $contact_phone) {
+    function createCampingData($camping_site_name, $location, $description, $feature_name, $attraction_name, $contact_name, $contact_email, $contact_phone, $image_path) {
         $uuid_value= new UUID();
         $this->camping_site_id = $uuid_value->generate();
         $this->camping_site_name = $camping_site_name;
@@ -82,8 +82,9 @@ class Camping{
         $this->contact_name = $contact_name;
         $this->contact_email = $contact_email;
         $this->contact_phone = $contact_phone;
+        $this->image_path = $image_path;
 
-        $campingQuery = "INSERT INTO camping_sites (id, name, location, description) VALUES ('$this->camping_site_id', '$this->camping_site_name', '$this->location', '$this->description')";
+        $campingQuery = "INSERT INTO camping_sites (id, name, location, description, image) VALUES ('$this->camping_site_id', '$this->camping_site_name', '$this->location', '$this->description', '$this->image_path')";
         $this->query->executeQuery($campingQuery, CONST_POST);
 
         $featureQuery = "INSERT INTO features (id, camping_site_id, feature_name) VALUES ('$this->camping_site_id', '$this->camping_site_id', '$this->feature_name')";

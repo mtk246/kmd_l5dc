@@ -24,7 +24,7 @@ $link_arr = array(
 ?>
 <header>
     <div class="logo">MTK</div>
-    <ul class="navigation">
+    <ul class="navigation d-flex align-items-center">
       <form class="flex items-center" action="<?php echo CONST_BASE_URL . "/camping.php"; ?>" method="POST">   
           <label for="simple-search" class="sr-only">Search</label>
           <div class="relative w-full">
@@ -103,6 +103,7 @@ $link_arr = array(
             </li>
             <?php } ?>
           <?php } ?>
+        <div id="google_translate_element_2"></div>
       </ul>
     </div>
 </header>
