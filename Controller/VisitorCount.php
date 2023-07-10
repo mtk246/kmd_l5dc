@@ -12,6 +12,13 @@ class VisitorCount{
         $this->query = new Query();
     }
 
+    function get() {
+        $sql = "SELECT * FROM visit_counter";
+        $this->data = $this->query->executeQuery($sql, CONST_GET);
+
+        return json_encode($this->data);
+    }
+
     function getOneVisitCount($ip_address) {
         $this->ip_address = $ip_address;
 

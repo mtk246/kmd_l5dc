@@ -1,3 +1,11 @@
+<?php
+require_once("./ErrorHandler/error.php");
+require_once("./Controller/VisitorCount.php");
+
+$countController = new VisitorCount();
+$count = $countController->get();
+$countDecode = json_decode($count, true);
+?>
 <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
@@ -5,6 +13,9 @@
                 <a href="https://flowbite.com/" class="flex items-center">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MTK</span>
                 </a>
+                <h3>
+                    View Count: <?php echo count($countDecode); ?>
+                </h3>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                 <div>

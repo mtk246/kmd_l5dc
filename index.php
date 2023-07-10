@@ -57,6 +57,15 @@ $count = 4;
         </div>
     </div>
 
+    <div class="shop my-20" id="shop">
+        <div class="title">
+            <h2 class="titetext">Featured Video</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/B6N_J3mMEJQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <!--Shop Section-->
 
     <section class="shop" id="shop">
@@ -90,6 +99,60 @@ $count = 4;
             <?php } ?>
         </div>
         <a href="./camping.php" class="sall">SHOW ALL</a>
+    </section>
+
+    <!--Shop Section-->
+
+    <section class="shop" id="shop">
+        <div class="title">
+            <h2 class="titetext">Wearable Technologies</h2>
+        </div>
+        <div class="content">
+            <div class="box">
+                <div class="imgbx">
+                    <img src="./assets/images/portable_speaker.jpg" alt="" width="200" height="200">
+                </div>
+                <div class="text">
+                    Portable Speaker
+                </div>
+                <div class="price">
+                    $100
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                    <img src="./assets/images/garmin.jpg" alt="" width="200" height="200">
+                </div>
+                <div class="text">
+                    GPS Phone
+                </div>
+                <div class="price">
+                    $199
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                    <img src="./assets/images/go_pro.jpg" alt="" width="200" height="200">
+                </div>
+                <div class="text">
+                    Go Pro Hero 11
+                </div>
+                <div class="price">
+                    $499
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                    <img src="./assets/images/handheld_gps.jpg" alt="" width="200" height="200">
+                </div>
+                <div class="text">
+                    HandHeld GPS Tracker
+                </div>
+                <div class="price">
+                    $399
+                </div>
+            </div>
+        </div>
     </section>
 
     <!--About Section-->
