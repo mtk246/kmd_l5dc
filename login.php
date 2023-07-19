@@ -8,7 +8,7 @@ if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] 
     $_SESSION['login_error_time'] = time();
 }
 
-if (isset($_SESSION['login_error_time']) && (time() - $_SESSION['login_error_time'] >= 60)) {
+if (isset($_SESSION['login_error_time']) && (time() - $_SESSION['login_error_time'] >= 600)) {
     unset($_SESSION['login_error_attempt']);
     unset($_SESSION['login_error_time']);
 }
@@ -53,7 +53,7 @@ if (isset($_SESSION['login_error_time']) && (time() - $_SESSION['login_error_tim
                     <?php } ?>
                     <?php if (isset($_SESSION['login_error_attempt']) && $_SESSION['login_error_attempt'] >= 3) { ?>
                         <p class="text-danger text-sm">
-                            Login and register are disabled for 1 minute due to multiple login attempts. Please try again later.
+                            Login and register are disabled for 10 minutes due to multiple login attempts. Please try again later.
                         </p>
                     <?php } ?>
                     <p class="signup">

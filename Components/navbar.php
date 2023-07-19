@@ -16,6 +16,11 @@ $link_arr = array(
     "type" => "text",
   ),
   array(
+    "href" => CONST_BASE_URL . "/contact.php",
+    "text" => "Contact Us",
+    "type" => "text",
+  ),
+  array(
     "href" => $user !== "" ? CONST_BASE_URL . '/Auth/destroy_session.php' : CONST_BASE_URL . '/login.php',
     "text" => $user !== "" ? "Logout" : "Register / Login",
     "type" => "button",

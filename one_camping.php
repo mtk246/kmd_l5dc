@@ -294,6 +294,27 @@ if (isset($_POST['edit_review']) && isset($_POST['review_id'])) {
           </div>
         </div>
       </div>
+      
+      <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+        <div>
+          <h3 class="">Features</h3>
+
+          <div class="space-y-6">
+            <p class="text-base text-gray-600">
+                <?php echo $decodeCampingData[0]['feature_name']; ?>
+            </p>
+          </div>
+        </div>
+        <div class="my-4">
+          <h3 class="">Attraction</h3>
+
+          <div class="space-y-6">
+            <p class="text-base text-gray-600">
+                <?php echo $decodeCampingData[0]['attraction_name']; ?>
+            </p>
+          </div>
+        </div>
+      </div>
 
     <div class="maps">
       <?php

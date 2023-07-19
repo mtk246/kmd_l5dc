@@ -41,7 +41,20 @@ class Camping{
     }
 
     function getOneCampingData($id) {
-        $sql = "SELECT * FROM camping_sites WHERE id = '$id'";
+        $sql = "SELECT
+            c.id,
+            c.name,
+            c.location,
+            c.description,
+            c.image,
+            c.created_at,
+            c.updated_at,
+            f.feature_name,
+            l.attraction_name
+        FROM camping_sites c
+        INNER JOIN features f ON f.camping_site_id = c.id 
+        INNER JOIN local_attractions l ON l.camping_site_id = c.id
+        WHERE c.id = '$id'";
         $this->camping = $this->query->executeQuery($sql, CONST_GET);
 
         return json_encode($this->camping);
