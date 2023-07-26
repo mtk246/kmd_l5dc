@@ -7,6 +7,7 @@ require_once("../../Controller/constants.php");
 
 $id = $_SESSION['user_id'];
 $isSuccess = isset($_GET['update']) && $_GET['update'];
+$isDeleted = isset($_GET['delete']) && $_GET['delete'];
 
 $campingController = new Camping();
 $campingInfos = $campingController->getCampingData();
@@ -25,6 +26,11 @@ $tableHeading = array(
 <?php if ($isSuccess) { ?>
     <div class="text-center my-6 p-6">
         <span class="bg-green-100 p-6 rounded">Camping updated successfully</span>
+    </div>
+<?php } ?>
+<?php if ($isDeleted) { ?>
+    <div class="text-center my-6 p-6">
+        <span class="bg-red-100 p-6 rounded">Camping deleted successfully</span>
     </div>
 <?php } ?>
 <div class="container px-6 mx-auto grid p-6">
@@ -46,7 +52,6 @@ $tableHeading = array(
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
             >
                 <?php foreach ($decodeCampingInfos as $camping) { ?>
-                    <form action="<?php echo CONST_BASE_URL; ?>/pages/admin/update_camping.php" method="POST">
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $camping['name']; ?>
@@ -63,20 +68,34 @@ $tableHeading = array(
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $camping['updated_at']; ?>
                             </td>
-                            <td class="px-4 py-3 text-sm">
-                                <input
-                                    type="hidden"
-                                    name="update_camping_id"
-                                    value="<?php echo $camping['id']; ?>"
-                                />
-                                <button
-                                    type="submit"
-                                >
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
+                            <td class="px-4 py-3 text-sm flex flex-cols">
+                                <form class="px-4" action="<?php echo CONST_BASE_URL; ?>/pages/admin/update_camping.php" method="POST">
+                                    <input
+                                        type="hidden"
+                                        name="update_camping_id"
+                                        value="<?php echo $camping['id']; ?>"
+                                    />
+                                    <button
+                                        type="submit"
+                                    >
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </form>
+                                <form action="<?php echo CONST_BASE_URL; ?>/pages/admin/auth_delete_camping.php" method="POST">
+                                    <input
+                                        type="hidden"
+                                        name="delete_camping_id"
+                                        value="<?php echo $camping['id']; ?>"
+                                    />
+                                    <button
+                                        type="submit"
+                                        name="delete_camping"
+                                    >
+                                        <i class="fa-solid fa-trash text-red-600"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
-                    </form>
                 <?php } ?>
             </tbody>
         </table>

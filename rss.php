@@ -11,9 +11,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <rss version="2.0">
     <channel>
-        <title>MTK Camping RSS Feed</title>
+        <title>GWSC Camping RSS Feed</title>
         <link>http://127.0.0.1</link>
-        <description>MTK Camping! Explore the world!</description>
+        <description>GWSC Camping! Explore the world!</description>
         <language>en-us</language>
         <?php foreach ($decodeRssInfos as $item): ?>
             <item>

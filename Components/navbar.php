@@ -28,7 +28,7 @@ $link_arr = array(
 );
 ?>
 <header>
-    <div class="logo">MTK</div>
+    <div class="logo">GWSC</div>
     <ul class="navigation d-flex align-items-center">
       <form class="flex items-center" action="<?php echo CONST_BASE_URL . "/camping.php"; ?>" method="POST">   
           <label for="simple-search" class="sr-only">Search</label>

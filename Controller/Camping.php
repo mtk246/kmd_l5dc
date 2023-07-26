@@ -111,5 +111,14 @@ class Camping{
 
         return $this->response;
     }
+
+    function deleteCamping($id) {
+        $this->camping_site_id = $id;
+
+        $sql = "DELETE FROM camping_sites WHERE id = '$this->camping_site_id'";
+        $this->response = $this->query->executeQuery($sql, CONST_DELETE);
+
+        return $this->response;
+    }
 }
 ?>

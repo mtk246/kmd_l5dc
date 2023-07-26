@@ -55,7 +55,7 @@ $curPageName = ucwords($curPageName);
                 class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
                 href="#"
             >
-                MTK
+                GWSC
             </a>
             <ul class="mt-6">
                 <?php foreach($navbarArr as $navbar) { ?>
@@ -96,7 +96,7 @@ $curPageName = ucwords($curPageName);
                 class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
                 href="#"
             >
-                MTK
+                GWSC
             </a>
             <ul class="mt-6">
                 <?php foreach ($navbarArr as $navbar) { ?>

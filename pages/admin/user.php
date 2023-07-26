@@ -29,23 +29,23 @@ $tableHeading = array(
 <?php } ?>
 <div class="container px-6 mx-auto grid p-6">
     <div class="w-full overflow-x-auto">
-        <form action="update_user.php" method="POST">
-            <table class="w-full whitespace-no-wrap">
-                <thead>
-                    <tr
-                        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                        <?php foreach ($tableHeading as $tHead) { ?>
-                            <th class="px-4 py-3">
-                                <?php echo $tHead; ?>
-                            </th>
-                        <?php } ?>
-                    </tr>
-                </thead>
-                <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+        <table class="w-full whitespace-no-wrap">
+            <thead>
+                <tr
+                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
-                    <?php foreach ($decodeUserInfos as $user) { ?>
+                    <?php foreach ($tableHeading as $tHead) { ?>
+                        <th class="px-4 py-3">
+                            <?php echo $tHead; ?>
+                        </th>
+                    <?php } ?>
+                </tr>
+            </thead>
+            <tbody
+                class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+            >
+                <?php foreach ($decodeUserInfos as $user) { ?>
+                    <form action="update_user.php" method="POST">
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $user['name']; ?>
@@ -64,7 +64,7 @@ $tableHeading = array(
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <input
-                                    type="hidden"
+                                    type="text"
                                     name="update_user_id"
                                     value="<?php echo $user['id']; ?>"
                                 />
@@ -75,10 +75,10 @@ $tableHeading = array(
                                 </button>
                             </td>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </form>
+                    </form>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
